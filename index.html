@@ -11,6 +11,7 @@
       color: #fff;
       font-family: Arial, sans-serif;
     }
+
     header {
       background: #111;
       padding: 15px;
@@ -19,20 +20,36 @@
       font-weight: bold;
     }
 
-    /* GRID PARA OS FILMES */
-    .filmes-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    h2.categoria {
+      margin: 20px 15px 10px 15px;
+      font-size: 20px;
+      border-left: 5px solid red;
+      padding-left: 10px;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
       gap: 15px;
-      padding: 15px;
+      padding: 0 15px 20px 15px;
+    }
+
+    .carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+    .carousel::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
     }
 
     .filme {
       background: #111;
-      padding: 10px;
+      min-width: 220px;
       border-radius: 8px;
+      padding: 10px;
       display: flex;
       flex-direction: column;
+      flex-shrink: 0;
     }
 
     .filme img {
@@ -41,13 +58,13 @@
       object-fit: cover;
     }
 
-    .filme h2 {
+    .filme h3 {
       margin: 10px 0 5px 0;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .filme p {
-      font-size: 14px;
+      font-size: 13px;
       color: #ccc;
       margin: 0 0 10px 0;
     }
@@ -60,15 +77,19 @@
       color: white;
       text-decoration: none;
       border-radius: 5px;
+      cursor: pointer;
     }
 
-    /* RESPONSIVO CELULAR */
+    /* Responsivo */
     @media (max-width: 500px) {
-      .filme h2 {
-        font-size: 16px;
+      .filme {
+        min-width: 160px;
+      }
+      .filme h3 {
+        font-size: 14px;
       }
       .filme p {
-        font-size: 12px;
+        font-size: 11px;
       }
     }
   </style>
@@ -77,36 +98,39 @@
 
 <header>🎬 HydraFilmes</header>
 
-<div class="filmes-container">
-
+<!-- CATEGORIA AVENTURA -->
+<h2 class="categoria">Aventura</h2>
+<div class="carousel">
   <div class="filme">
     <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-    <h2>Nas Terras Perdidas</h2>
+    <h3>Nas Terras Perdidas</h3>
     <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
   </div>
-
-  <div class="filme">
-    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h2>Pesadelo na Terra do Nunca 2026</h2>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
-  </div>
-
+  <!-- Repetir filme se quiser lado a lado -->
   <div class="filme">
     <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-    <h2>Nas Terras Perdidas</h2>
+    <h3>Nas Terras Perdidas</h3>
     <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
   </div>
+</div>
 
+<!-- CATEGORIA TERROR -->
+<h2 class="categoria">Terror</h2>
+<div class="carousel">
   <div class="filme">
     <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h2>Pesadelo na Terra do Nunca 2026</h2>
+    <h3>Pesadelo na Terra do Nunca 2026</h3>
     <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
   </div>
-
+  <div class="filme">
+    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
+    <h3>Pesadelo na Terra do Nunca 2026</h3>
+    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
+  </div>
 </div>
 
 </body>
