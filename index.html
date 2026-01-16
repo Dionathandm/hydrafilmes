@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>HydraFilmes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <style>
     body {
       margin: 0;
@@ -14,39 +14,36 @@
 
     header {
       background: #111;
-      padding: 15px;
+      padding: 12px;
       text-align: center;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
     }
 
     h2.categoria {
-      margin: 20px 15px 10px 15px;
-      font-size: 20px;
-      border-left: 5px solid red;
-      padding-left: 10px;
+      margin: 15px 12px 8px 12px;
+      font-size: 18px;
+      border-left: 4px solid red;
+      padding-left: 8px;
     }
 
     .carousel {
       display: flex;
       overflow-x: auto;
-      gap: 15px;
-      padding: 0 15px 20px 15px;
+      gap: 12px;
+      padding: 0 12px 18px 12px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .carousel::-webkit-scrollbar {
-      height: 8px;
-    }
-    .carousel::-webkit-scrollbar-thumb {
-      background: #555;
-      border-radius: 4px;
+      display: none;
     }
 
     .filme {
       background: #111;
-      min-width: 220px;
-      border-radius: 8px;
-      padding: 10px;
+      min-width: 150px;
+      border-radius: 6px;
+      padding: 8px;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
@@ -54,43 +51,32 @@
 
     .filme img {
       width: 100%;
-      border-radius: 8px;
+      height: 100px;
+      border-radius: 6px;
       object-fit: cover;
     }
 
     .filme h3 {
-      margin: 10px 0 5px 0;
-      font-size: 16px;
+      margin: 6px 0 4px 0;
+      font-size: 14px;
     }
 
     .filme p {
-      font-size: 13px;
+      font-size: 11px;
       color: #ccc;
-      margin: 0 0 10px 0;
+      margin: 0 0 6px 0;
     }
 
     .btn {
       margin-top: auto;
       text-align: center;
-      padding: 10px;
+      padding: 6px;
+      font-size: 12px;
       background: red;
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 4px;
       cursor: pointer;
-    }
-
-    /* Responsivo */
-    @media (max-width: 500px) {
-      .filme {
-        min-width: 160px;
-      }
-      .filme h3 {
-        font-size: 14px;
-      }
-      .filme p {
-        font-size: 11px;
-      }
     }
   </style>
 </head>
@@ -107,7 +93,6 @@
     <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
   </div>
-  <!-- Repetir filme se quiser lado a lado -->
   <div class="filme">
     <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
     <h3>Nas Terras Perdidas</h3>
