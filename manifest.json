@@ -1,6 +1,7 @@
 {
   "name": "HydraFilmes",
   "short_name": "HydraFilmes",
+  "description": "Assista seus filmes favoritos no HydraFilmes!",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
