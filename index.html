@@ -15,33 +15,12 @@
       overflow-x: hidden;
     }
 
-    /* INTRO VIDEO FULLSCREEN */
-    #introVideoWrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    #introVideoWrapper video {
-      width: 80%;
-      max-height: 80%;
-      object-fit: contain;
-    }
-
     header {
       background: #111;
       padding: 12px;
       text-align: center;
       font-size: 20px;
       font-weight: bold;
-      display: none; /* escondido no início */
     }
 
     h2.categoria {
@@ -120,7 +99,7 @@
       }
     }
 
-    /* PLAYER MODAL */
+    /* MODAL PLAYER */
     #playerModal {
       display: none;
       position: fixed;
@@ -135,16 +114,24 @@
       width: 100%;
       height: 100%;
     }
+
+    /* VIDEO DE INTRO */
+    #introVideo {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
 
-<!-- INTRO VIDEO -->
-<div id="introVideoWrapper">
-  <video id="introVideo" autoplay muted>
-    <source src="https://drive.google.com/uc?export=download&id=1FdxBProraK6tS3Q9dbWKZmv67qnzVDP" type="video/mp4">
-  </video>
-</div>
+<!-- VÍDEO DE INTRODUÇÃO -->
+<video id="introVideo" autoplay muted playsinline>
+  <source src="https://drive.google.com/uc?export=download&id=1FdxBProraK6tS3Q9dbWKZmv67qnz2VDP" type="video/mp4">
+</video>
 
 <header>🎬 HydraFilmes</header>
 
@@ -185,13 +172,6 @@ function fecharPlayer() {
   document.getElementById('playerModal').style.display = 'none';
 }
 
-// ESCONDER INTRO E MOSTRAR CONTEÚDO
-const introVideo = document.getElementById('introVideo');
-introVideo.addEventListener('ended', () => {
-  document.getElementById('introVideoWrapper').style.display = 'none';
-  document.querySelector('header').style.display = 'block';
-});
-
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
@@ -204,7 +184,6 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-
   const btnInstall = document.createElement('button');
   btnInstall.innerText = "📥 Instalar HydraFilmes";
   btnInstall.style.cssText = `
@@ -221,7 +200,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
     cursor: pointer;
   `;
   document.body.appendChild(btnInstall);
-
   btnInstall.addEventListener('click', async () => {
     btnInstall.style.display = 'none';
     deferredPrompt.prompt();
@@ -229,19 +207,11 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 });
 
-// NOTIFICAÇÃO PUSH
-function askNotificationPermission() {
-  if (!('Notification' in window)) return;
-  Notification.requestPermission().then(permission => {
-    if (permission === 'granted') {
-      new Notification('HydraFilmes', {
-        body: 'Obrigado por permitir notificações! Você receberá avisos de novos filmes.',
-        icon: 'https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png'
-      });
-    }
-  });
-}
-window.addEventListener('load', askNotificationPermission);
+// FECHAR INTRO AO TERMINAR
+const introVideo = document.getElementById('introVideo');
+introVideo.addEventListener('ended', () => {
+  introVideo.style.display = 'none';
+});
 </script>
 
 </body>
