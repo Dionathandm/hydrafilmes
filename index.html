@@ -18,26 +18,58 @@
       font-size: 22px;
       font-weight: bold;
     }
-    .filme {
+
+    /* GRID PARA OS FILMES */
+    .filmes-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
       padding: 15px;
-      border-bottom: 1px solid #222;
     }
+
+    .filme {
+      background: #111;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+
     .filme img {
       width: 100%;
       border-radius: 8px;
+      object-fit: cover;
     }
+
     .filme h2 {
-      margin: 10px 0;
+      margin: 10px 0 5px 0;
+      font-size: 18px;
     }
+
+    .filme p {
+      font-size: 14px;
+      color: #ccc;
+      margin: 0 0 10px 0;
+    }
+
     .btn {
-      display: block;
+      margin-top: auto;
       text-align: center;
-      padding: 12px;
+      padding: 10px;
       background: red;
       color: white;
       text-decoration: none;
       border-radius: 5px;
-      margin-top: 10px;
+    }
+
+    /* RESPONSIVO CELULAR */
+    @media (max-width: 500px) {
+      .filme h2 {
+        font-size: 16px;
+      }
+      .filme p {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
@@ -45,18 +77,36 @@
 
 <header>🎬 HydraFilmes</header>
 
-<div class="filme">
-  <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-  <h2>Nas Terras Perdidas</h2>
-  <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-  <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
-</div>
+<div class="filmes-container">
 
-<div class="filme">
-  <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-  <h2>Pesadelo na Terra do Nunca 2026</h2>
-  <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-  <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
+  <div class="filme">
+    <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
+    <h2>Nas Terras Perdidas</h2>
+    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
+  </div>
+
+  <div class="filme">
+    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
+    <h2>Pesadelo na Terra do Nunca 2026</h2>
+    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
+  </div>
+
+  <div class="filme">
+    <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
+    <h2>Nas Terras Perdidas</h2>
+    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
+  </div>
+
+  <div class="filme">
+    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
+    <h2>Pesadelo na Terra do Nunca 2026</h2>
+    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
+  </div>
+
 </div>
 
 </body>
