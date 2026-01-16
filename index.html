@@ -10,6 +10,7 @@
       background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
+      overflow-x: hidden;
     }
 
     header {
@@ -30,6 +31,7 @@
     .carousel {
       display: flex;
       overflow-x: auto;
+      scroll-snap-type: x mandatory; /* cada filme “encaixa” */
       gap: 12px;
       padding: 0 12px 18px 12px;
       -webkit-overflow-scrolling: touch;
@@ -41,29 +43,29 @@
 
     .filme {
       background: #111;
-      min-width: 140px;
+      flex: 0 0 90%; /* cada filme ocupa 90% da tela do celular */
       border-radius: 6px;
       padding: 6px;
       display: flex;
       flex-direction: column;
-      flex-shrink: 0;
+      scroll-snap-align: start; /* encaixa na rolagem */
     }
 
-    /* CAPA QUADRADA */
+    /* CAPA 16:9 */
     .filme img {
       width: 100%;
-      height: 140px;
+      aspect-ratio: 16 / 9; /* imagem 16:9 */
       border-radius: 6px;
       object-fit: cover;
     }
 
     .filme h3 {
       margin: 6px 0 4px 0;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .filme p {
-      font-size: 11px;
+      font-size: 12px;
       color: #ccc;
       margin: 0 0 6px 0;
     }
@@ -71,8 +73,8 @@
     .btn {
       margin-top: auto;
       text-align: center;
-      padding: 6px;
-      font-size: 12px;
+      padding: 8px;
+      font-size: 14px;
       background: red;
       color: white;
       text-decoration: none;
@@ -83,20 +85,17 @@
     /* Responsivo celular */
     @media (max-width: 400px) {
       .filme {
-        min-width: 120px;
-      }
-      .filme img {
-        height: 120px;
+        flex: 0 0 95%; /* ocupa quase toda a tela */
       }
       .filme h3 {
-        font-size: 13px;
+        font-size: 14px;
       }
       .filme p {
-        font-size: 10px;
+        font-size: 11px;
       }
       .btn {
-        font-size: 11px;
-        padding: 5px;
+        font-size: 13px;
+        padding: 7px;
       }
     }
   </style>
@@ -125,22 +124,6 @@
 <!-- CATEGORIA TERROR -->
 <h2 class="categoria">Terror</h2>
 <div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h3>Pesadelo na Terra do Nunca 2026</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
-  </div>
-  <div class="filme">
-    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h3>Pesadelo na Terra do Nunca 2026</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
-  </div>
-</div>
-
-</body>
-</html><div class="carousel">
   <div class="filme">
     <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
     <h3>Pesadelo na Terra do Nunca 2026</h3>
