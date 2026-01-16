@@ -118,31 +118,35 @@
     /* INTRO VIDEO */
     #introVideoContainer {
       position: fixed;
-      top:0; left:0;
-      width:100%; height:100%;
-      background:#000;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index: 99999;
-    }
-    #introVideoContainer video {
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #introVideoContainer video {
+      width: 90%;
+      max-height: 80%;
+      object-fit: contain;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
 
+<header>🎬 HydraFilmes</header>
+
 <!-- INTRO VIDEO -->
 <div id="introVideoContainer">
-  <video id="introVideo" autoplay muted>
-    <source src="https://raw.githubusercontent.com/Dionathandm/hydrafilmes/00b21dab18dadebb70d8d3b20cd8056611460bf4/intro.mp4" type="video/mp4">
+  <video id="introVideo" autoplay muted playsinline>
+    <source src="media/intro.mp4" type="video/mp4">
   </video>
 </div>
-
-<header>🎬 HydraFilmes</header>
 
 <!-- CATEGORIA AVENTURA -->
 <h2 class="categoria">Aventura</h2>
@@ -232,9 +236,12 @@ function askNotificationPermission() {
 }
 window.addEventListener('load', askNotificationPermission);
 
-// REMOVER INTRO VIDEO APÓS TERMINAR
-document.getElementById('introVideo').addEventListener('ended', () => {
-  document.getElementById('introVideoContainer').style.display = 'none';
+// REMOVER INTRO VIDEO APÓS 5 SEGUNDOS
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const intro = document.getElementById('introVideoContainer');
+    if (intro) intro.style.display = 'none';
+  }, 5000); // 5 segundos
 });
 </script>
 
