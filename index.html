@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>HydraFilmes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="https://dionathandm.github.io/hydrafilmes/manifest.json">
   <meta name="theme-color" content="#ff0000">
   <style>
     body {
@@ -148,7 +148,7 @@
 
 <!-- VÍDEO DE INTRODUÇÃO -->
 <video id="introVideo" autoplay muted playsinline>
-  <source src="https://drive.google.com/uc?export=download&id=1FdxBProraK6tS3Q9dbWKZmv67qnz2VDP" type="video/mp4">
+  <source src="https://dionathandm.github.io/hydrafilmes/intro.mp4" type="video/mp4">
 </video>
 
 <header>🎬 HydraFilmes</header>
@@ -196,7 +196,7 @@ function fecharPlayer() {
 
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
+  navigator.serviceWorker.register('https://dionathandm.github.io/hydrafilmes/sw.js')
     .then(() => console.log('Service Worker registrado!'))
     .catch(err => console.log('Service Worker falhou: ', err));
 }
