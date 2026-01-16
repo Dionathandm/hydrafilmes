@@ -98,6 +98,22 @@
         padding: 7px;
       }
     }
+
+    /* PLAYER MODAL */
+    #playerModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    #playerModal iframe {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
@@ -110,13 +126,7 @@
   <div class="filme">
     <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
     <h3>Nas Terras Perdidas</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
-  </div>
-  <div class="filme">
-    <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-    <h3>Nas Terras Perdidas</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
   </div>
 </div>
@@ -127,18 +137,38 @@
   <div class="filme">
     <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
     <h3>Pesadelo na Terra do Nunca 2026</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
-  </div>
-  <div class="filme">
-    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h3>Pesadelo na Terra do Nunca 2026</h3>
-    <p>Agradecendo a preferência por estar assistindo os filmes através do HydraFilmes.</p>
+    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
   </div>
 </div>
 
+<!-- CATEGORIA COMÉDIA -->
+<h2 class="categoria">Comédia</h2>
+<div class="carousel">
+  <div class="filme">
+    <img src="https://i.ibb.co/zVzZSp0X/file-000000004bc8720e9afb402050bf56c9.png">
+    <h3>Assalto à Família</h3>
+    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
+    <button class="btn" onclick="abrirPlayer('https://youtu.be/37skICEWOi4?si=4HQkw8OqCXwuRD77')">▶ Assistir</button>
+  </div>
+</div>
+
+<!-- MODAL PLAYER -->
+<div id="playerModal" onclick="fecharPlayer()">
+  <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
 <script>
+function abrirPlayer(link) {
+  document.getElementById('videoPlayer').src = link + "?autoplay=1";
+  document.getElementById('playerModal').style.display = 'flex';
+}
+function fecharPlayer() {
+  document.getElementById('videoPlayer').src = "";
+  document.getElementById('playerModal').style.display = 'none';
+}
+
+// SERVICE WORKER
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
     .then(() => console.log('Service Worker registrado!'))
