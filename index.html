@@ -5,11 +5,11 @@
   <title>HydraFilmes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#ff0000">
   <style>
     body {
       margin: 0;
-      background: #000;
+      background: #000; /* fundo escuro completo */
       color: #fff;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
@@ -115,18 +115,23 @@
       height: 100%;
     }
 
-    /* IMAGEM INTRODUÇÃO */
-    #introImage {
+    /* TELA DE INTRODUÇÃO */
+    #introScreen {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 60vw; /* Ajuste de tamanho */
-      max-width: 400px;
-      height: auto;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      background: #000;
-      border-radius: 12px;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000; /* fundo escuro total */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+    #introScreen img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
     }
 
     /* BOTÃO INSTALAR PWA */
@@ -140,7 +145,7 @@
       padding: 10px 20px;
       border-radius: 8px;
       font-size: 16px;
-      z-index: 10000;
+      z-index: 10001;
       cursor: pointer;
       display: none;
     }
@@ -148,8 +153,10 @@
 </head>
 <body>
 
-<!-- IMAGEM DE INTRODUÇÃO -->
-<img id="introImage" src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
+<!-- TELA DE INTRODUÇÃO -->
+<div id="introScreen">
+  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
+</div>
 
 <header>🎬 HydraFilmes</header>
 
@@ -184,7 +191,7 @@
 <button id="btnInstall">📥 Instalar HydraFilmes</button>
 
 <script>
-// ABRIR MODAL PLAYER
+// FECHAR MODAL PLAYER
 function abrirPlayer(link) {
   document.getElementById('videoPlayer').src = link + "?autoplay=1";
   document.getElementById('playerModal').style.display = 'flex';
@@ -201,12 +208,9 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('Service Worker falhou: ', err));
 }
 
-// FECHAR IMAGEM INTRO APÓS 3 SEGUNDOS COM TRANSIÇÃO SUAVE
-const introImage = document.getElementById('introImage');
+// FECHAR TELA DE INTRODUÇÃO APÓS 3 SEGUNDOS
 setTimeout(() => {
-  introImage.style.transition = "opacity 0.8s";
-  introImage.style.opacity = 0;
-  setTimeout(() => introImage.style.display = "none", 800);
+  document.getElementById('introScreen').style.display = 'none';
 }, 3000);
 
 // PROMPT INSTALAÇÃO PWA
