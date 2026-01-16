@@ -13,8 +13,26 @@
       color: #fff;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
-      transition: opacity 1s ease; /* Para fade in */
-      opacity: 0; /* Começa invisível até intro terminar */
+    }
+
+    /* INTRO VIDEO FULLSCREEN */
+    #introVideoWrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #introVideoWrapper video {
+      width: 80%;
+      max-height: 80%;
+      object-fit: contain;
     }
 
     header {
@@ -23,6 +41,7 @@
       text-align: center;
       font-size: 20px;
       font-weight: bold;
+      display: none; /* escondido no início */
     }
 
     h2.categoria {
@@ -116,32 +135,14 @@
       width: 100%;
       height: 100%;
     }
-
-    /* INTRO VIDEO FULLSCREEN */
-    #introVideoContainer {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 99999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #introVideoContainer video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Preenche toda a tela */
-    }
   </style>
 </head>
 <body>
 
 <!-- INTRO VIDEO -->
-<div id="introVideoContainer">
-  <video id="introVideo" autoplay muted playsinline>
-    <source src="media/intro.mp4" type="video/mp4">
+<div id="introVideoWrapper">
+  <video id="introVideo" autoplay muted>
+    <source src="https://drive.google.com/uc?export=download&id=1FdxBProraK6tS3Q9dbWKZmv67qnzVDP" type="video/mp4">
   </video>
 </div>
 
@@ -184,6 +185,13 @@ function fecharPlayer() {
   document.getElementById('playerModal').style.display = 'none';
 }
 
+// ESCONDER INTRO E MOSTRAR CONTEÚDO
+const introVideo = document.getElementById('introVideo');
+introVideo.addEventListener('ended', () => {
+  document.getElementById('introVideoWrapper').style.display = 'none';
+  document.querySelector('header').style.display = 'block';
+});
+
 // SERVICE WORKER
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
@@ -196,6 +204,7 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
+
   const btnInstall = document.createElement('button');
   btnInstall.innerText = "📥 Instalar HydraFilmes";
   btnInstall.style.cssText = `
@@ -233,13 +242,6 @@ function askNotificationPermission() {
   });
 }
 window.addEventListener('load', askNotificationPermission);
-
-// FADE IN DO SITE APÓS INTRO VIDEO
-const introVideo = document.getElementById('introVideo');
-introVideo.addEventListener('ended', () => {
-  document.getElementById('introVideoContainer').style.display = 'none';
-  document.body.style.opacity = '1'; // mostra o site com fade
-});
 </script>
 
 </body>
