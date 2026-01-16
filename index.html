@@ -115,12 +115,12 @@
       height: 100%;
     }
 
-    /* VÍDEO INTRO */
-    #introVideo {
+    /* IMAGEM INTRODUÇÃO */
+    #introImage {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 110vw; /* ajustado para eliminar borda branca */
+      width: 110vw; /* dá leve zoom para eliminar borda branca */
       height: auto;
       transform: translate(-50%, -50%);
       z-index: 9999;
@@ -145,10 +145,8 @@
 </head>
 <body>
 
-<!-- VÍDEO DE INTRODUÇÃO -->
-<video id="introVideo" autoplay muted playsinline>
-  <source src="https://drive.google.com/uc?export=download&id=1FdxBProraK6tS3Q9dbWKZmv67qnz2VDP" type="video/mp4">
-</video>
+<!-- IMAGEM DE INTRODUÇÃO -->
+<img id="introImage" src="https://i.ibb.co/1tb4fv8C/file-000000001c34720eb81c427b33d748f6-1.png" alt="HydraFilmes">
 
 <header>🎬 HydraFilmes</header>
 
@@ -200,11 +198,11 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('Service Worker falhou: ', err));
 }
 
-// FECHAR INTRO AO TERMINAR
-const introVideo = document.getElementById('introVideo');
-introVideo.addEventListener('ended', () => {
-  introVideo.style.display = 'none';
-});
+// FECHAR INTRO AUTOMATICAMENTE APÓS 3 SEGUNDOS
+const introImage = document.getElementById('introImage');
+setTimeout(() => {
+  introImage.style.display = 'none';
+}, 3000);
 
 // PROMPT INSTALAÇÃO PWA
 let deferredPrompt;
