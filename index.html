@@ -115,15 +115,32 @@
       height: 100%;
     }
 
-    /* VÍDEO INTRO */
+    /* INTRO VIDEO */
     #introVideo {
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 120%;  /* Afastado da tela */
-      height: auto;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
       transform: translate(-50%, -50%);
       z-index: 9999;
+    }
+
+    /* BOTÃO INSTALAR PWA */
+    #btnInstall {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: red;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      z-index: 10000;
+      cursor: pointer;
+      display: none;
     }
   </style>
 </head>
@@ -163,7 +180,11 @@
   <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 </div>
 
+<!-- BOTÃO INSTALAR PWA -->
+<button id="btnInstall">📥 Instalar HydraFilmes</button>
+
 <script>
+// ABRIR MODAL PLAYER
 function abrirPlayer(link) {
   document.getElementById('videoPlayer').src = link + "?autoplay=1";
   document.getElementById('playerModal').style.display = 'flex';
@@ -177,7 +198,7 @@ function fecharPlayer() {
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js')
     .then(() => console.log('Service Worker registrado!'))
-    .catch((err) => console.log('Service Worker falhou: ', err));
+    .catch(err => console.log('Service Worker falhou: ', err));
 }
 
 // FECHAR INTRO AO TERMINAR
@@ -185,6 +206,34 @@ const introVideo = document.getElementById('introVideo');
 introVideo.addEventListener('ended', () => {
   introVideo.style.display = 'none';
 });
+
+// PROMPT INSTALAÇÃO PWA
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('btnInstall');
+  btn.style.display = 'block';
+  btn.addEventListener('click', async () => {
+    btn.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt = null;
+  });
+});
+
+// NOTIFICAÇÕES PUSH
+function askNotificationPermission() {
+  if (!('Notification' in window)) return;
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      new Notification('HydraFilmes', {
+        body: 'Obrigado por permitir notificações! Você receberá avisos de novos filmes.',
+        icon: 'https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png'
+      });
+    }
+  });
+}
+window.addEventListener('load', askNotificationPermission);
 </script>
 
 </body>
