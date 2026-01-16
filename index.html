@@ -215,6 +215,20 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredPrompt = null;
   });
 });
+
+// NOTIFICAÇÃO PUSH
+function askNotificationPermission() {
+  if (!('Notification' in window)) return;
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      new Notification('HydraFilmes', {
+        body: 'Obrigado por permitir notificações! Você receberá avisos de novos filmes.',
+        icon: 'https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png'
+      });
+    }
+  });
+}
+window.addEventListener('load', askNotificationPermission);
 </script>
 
 </body>
