@@ -142,6 +142,28 @@
   </div>
 </div>
 
+<!-- CATEGORIA COMÉDIA -->
+<h2 class="categoria">Comédia</h2>
+<div class="carousel">
+  <div class="filme">
+    <img src="https://i.ibb.co/5Xm39bHn/file-000000004bc8720e9afb402050bf56c9-2.jpg">
+    <h3>Assalto à Família</h3>
+    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
+    <button class="btn" onclick="abrirPlayer('https://youtu.be/37skICEWOi4?si=zyX_rn4PIzTvB3Wb')">▶ Assistir</button>
+  </div>
+</div>
+
+<!-- CATEGORIA AÇÃO -->
+<h2 class="categoria">Ação</h2>
+<div class="carousel">
+  <div class="filme">
+    <img src="https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png">
+    <h3>Operação Relâmpago</h3>
+    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
+    <button class="btn" onclick="abrirPlayer('https://vimeo.com/123456789')">▶ Assistir</button>
+  </div>
+</div>
+
 <!-- MODAL PLAYER -->
 <div id="playerModal" onclick="fecharPlayer()">
   <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -163,16 +185,13 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log('Service Worker registrado!'))
     .catch((err) => console.log('Service Worker falhou: ', err));
 }
-</script>
-<script>
-let deferredPrompt;
 
+// PROMPT DE INSTALAÇÃO PWA
+let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
-  // Impede que o navegador mostre o prompt automático
   e.preventDefault();
   deferredPrompt = e;
 
-  // Criar botão ou popup personalizado
   const btnInstall = document.createElement('button');
   btnInstall.innerText = "📥 Instalar HydraFilmes";
   btnInstall.style.cssText = `
@@ -193,15 +212,10 @@ window.addEventListener('beforeinstallprompt', (e) => {
   btnInstall.addEventListener('click', async () => {
     btnInstall.style.display = 'none';
     deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      console.log('Usuário instalou o app');
-    } else {
-      console.log('Usuário cancelou a instalação');
-    }
     deferredPrompt = null;
   });
 });
-  </script>
+</script>
+
 </body>
 </html>
