@@ -142,28 +142,6 @@
   </div>
 </div>
 
-<!-- CATEGORIA COMÉDIA -->
-<h2 class="categoria">Comédia</h2>
-<div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/5Xm39bHn/file-000000004bc8720e9afb402050bf56c9-2.jpg">
-    <h3>Assalto à Família</h3>
-    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
-    <button class="btn" onclick="abrirPlayer('https://youtu.be/37skICEWOi4?si=zyX_rn4PIzTvB3Wb')">▶ Assistir</button>
-  </div>
-</div>
-
-<!-- CATEGORIA AÇÃO -->
-<h2 class="categoria">Ação</h2>
-<div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png">
-    <h3>Operação Relâmpago</h3>
-    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
-    <button class="btn" onclick="abrirPlayer('https://vimeo.com/123456789')">▶ Assistir</button>
-  </div>
-</div>
-
 <!-- MODAL PLAYER -->
 <div id="playerModal" onclick="fecharPlayer()">
   <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
@@ -216,7 +194,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   });
 });
 
-// NOTIFICAÇÃO PUSH
+// NOTIFICAÇÃO LOCAL
 function askNotificationPermission() {
   if (!('Notification' in window)) return;
   Notification.requestPermission().then(permission => {
