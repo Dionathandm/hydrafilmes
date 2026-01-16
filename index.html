@@ -5,7 +5,7 @@
   <title>HydraFilmes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ff0000">
+  <meta name="theme-color" content="#000000">
   <style>
     body {
       margin: 0;
@@ -99,7 +99,7 @@
       }
     }
 
-    /* PLAYER MODAL */
+    /* MODAL PLAYER */
     #playerModal {
       display: none;
       position: fixed;
@@ -120,10 +120,13 @@
       position: fixed;
       top: 50%;
       left: 50%;
-      width: 110vw; /* dá leve zoom para eliminar borda branca */
+      width: 60vw; /* Ajuste de tamanho */
+      max-width: 400px;
       height: auto;
       transform: translate(-50%, -50%);
       z-index: 9999;
+      background: #000;
+      border-radius: 12px;
     }
 
     /* BOTÃO INSTALAR PWA */
@@ -146,7 +149,7 @@
 <body>
 
 <!-- IMAGEM DE INTRODUÇÃO -->
-<img id="introImage" src="https://i.ibb.co/1tb4fv8C/file-000000001c34720eb81c427b33d748f6-1.png" alt="HydraFilmes">
+<img id="introImage" src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
 
 <header>🎬 HydraFilmes</header>
 
@@ -198,10 +201,12 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('Service Worker falhou: ', err));
 }
 
-// FECHAR INTRO AUTOMATICAMENTE APÓS 3 SEGUNDOS
+// FECHAR IMAGEM INTRO APÓS 3 SEGUNDOS COM TRANSIÇÃO SUAVE
 const introImage = document.getElementById('introImage');
 setTimeout(() => {
-  introImage.style.display = 'none';
+  introImage.style.transition = "opacity 0.8s";
+  introImage.style.opacity = 0;
+  setTimeout(() => introImage.style.display = "none", 800);
 }, 3000);
 
 // PROMPT INSTALAÇÃO PWA
