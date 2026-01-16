@@ -1,19 +1,20 @@
 {
   "name": "HydraFilmes",
   "short_name": "HydraFilmes",
-  "start_url": "/index.html",
+  "description": "Assista aos melhores filmes no HydraFilmes!",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff0000",
-  "description": "Assista seus filmes favoritos no HydraFilmes",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://i.ibb.co/jZbKLHGB/file-000000008d40720ea3fa9ef785a05735.png",
+      "src": "https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://i.ibb.co/jZbKLHGB/file-000000008d40720ea3fa9ef785a05735.png",
+      "src": "https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png",
       "sizes": "512x512",
       "type": "image/png"
     }
