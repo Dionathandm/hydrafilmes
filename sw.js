@@ -1,16 +1,27 @@
-const CACHE_NAME = "hydrafilmes-cache-v1";
-const urlsToCache = ["/", "/index.html", "/manifest.json"];
+self.addEventListener('install', event => {
+  console.log('Service Worker instalado.');
+  self.skipWaiting();
+});
 
-self.addEventListener("install", (event) => {
+self.addEventListener('activate', event => {
+  console.log('Service Worker ativado.');
+});
+
+self.addEventListener('push', event => {
+  const data = event.data ? event.data.json() : { title: 'HydraFilmes', body: 'Novo filme disponível!' };
+  const options = {
+    body: data.body,
+    icon: 'https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png',
+    badge: 'https://i.ibb.co/dJwRf21T/file-000000001c34720eb81c427b33d748f6-1.png',
+  };
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
+    self.registration.showNotification(data.title, options)
   );
 });
 
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((resp) => resp || fetch(event.request))
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow('./index.html')
   );
 });
