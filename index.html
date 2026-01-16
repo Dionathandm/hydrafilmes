@@ -13,6 +13,8 @@
       color: #fff;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
+      transition: opacity 1s ease; /* Para fade in */
+      opacity: 0; /* Começa invisível até intro terminar */
     }
 
     header {
@@ -115,31 +117,26 @@
       height: 100%;
     }
 
-    /* INTRO VIDEO */
+    /* INTRO VIDEO FULLSCREEN */
     #introVideoContainer {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
+      background: #000;
+      z-index: 99999;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 99999;
-      padding: 20px;
-      box-sizing: border-box;
     }
     #introVideoContainer video {
-      width: 90%;
-      max-height: 80%;
-      object-fit: contain;
-      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Preenche toda a tela */
     }
   </style>
 </head>
 <body>
-
-<header>🎬 HydraFilmes</header>
 
 <!-- INTRO VIDEO -->
 <div id="introVideoContainer">
@@ -147,6 +144,8 @@
     <source src="media/intro.mp4" type="video/mp4">
   </video>
 </div>
+
+<header>🎬 HydraFilmes</header>
 
 <!-- CATEGORIA AVENTURA -->
 <h2 class="categoria">Aventura</h2>
@@ -197,7 +196,6 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-
   const btnInstall = document.createElement('button');
   btnInstall.innerText = "📥 Instalar HydraFilmes";
   btnInstall.style.cssText = `
@@ -236,12 +234,11 @@ function askNotificationPermission() {
 }
 window.addEventListener('load', askNotificationPermission);
 
-// REMOVER INTRO VIDEO APÓS 5 SEGUNDOS
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const intro = document.getElementById('introVideoContainer');
-    if (intro) intro.style.display = 'none';
-  }, 5000); // 5 segundos
+// FADE IN DO SITE APÓS INTRO VIDEO
+const introVideo = document.getElementById('introVideo');
+introVideo.addEventListener('ended', () => {
+  document.getElementById('introVideoContainer').style.display = 'none';
+  document.body.style.opacity = '1'; // mostra o site com fade
 });
 </script>
 
