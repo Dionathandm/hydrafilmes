@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>HydraFilmes</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff0000">
 
@@ -26,7 +26,6 @@ body {
   align-items: center;
   z-index: 10000;
 }
-
 #introScreen img {
   max-width: 80%;
 }
@@ -37,31 +36,32 @@ header {
   top: 0;
   width: 100%;
   height: 56px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 0 16px;
   background: transparent;
   z-index: 9999;
   transition: background 0.3s ease;
 }
-
 header.scrolled {
   background: rgba(0,0,0,0.95);
 }
-
 header img {
   height: 26px;
 }
 
+/* MENU CENTRAL */
+.menu {
+  justify-self: center;
+}
 .menu a {
   color: #bdbdbd;
-  margin-right: 14px;
+  margin: 0 12px;
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
 }
-
 .menu a.ativo {
   color: #fff;
   border-bottom: 2px solid red;
@@ -74,32 +74,28 @@ header img {
   background: url("https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png") center/cover no-repeat;
   position: relative;
 }
-
 .hero::after {
   content: "";
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 50%;
+  height: 55%;
   background: linear-gradient(to top, #000, transparent);
 }
-
 .hero-content {
   position: absolute;
-  bottom: 60px;
+  bottom: 80px;
   left: 16px;
+  max-width: 90%;
 }
-
 .hero h1 {
   font-size: 32px;
   margin: 0;
 }
-
 .hero p {
   font-size: 14px;
   color: #ccc;
 }
-
 .hero .btn {
   margin-top: 10px;
   padding: 10px 20px;
@@ -114,11 +110,9 @@ header img {
 main {
   padding-top: 20px;
 }
-
 section {
   display: none;
 }
-
 section.ativo {
   display: block;
 }
@@ -130,7 +124,6 @@ h2.categoria {
   border-left: 4px solid red;
   padding-left: 8px;
 }
-
 .carousel {
   display: flex;
   overflow-x: auto;
@@ -138,11 +131,9 @@ h2.categoria {
   padding: 0 16px 24px;
   scroll-snap-type: x mandatory;
 }
-
 .carousel::-webkit-scrollbar {
   display: none;
 }
-
 .filme {
   flex: 0 0 85%;
   background: #111;
@@ -150,23 +141,19 @@ h2.categoria {
   overflow: hidden;
   scroll-snap-align: start;
 }
-
 .filme img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
 }
-
 .filme h3 {
   margin: 8px;
 }
-
 .filme p {
   margin: 0 8px 8px;
   font-size: 12px;
   color: #aaa;
 }
-
 .btn {
   margin: 8px;
   display: block;
@@ -217,66 +204,107 @@ h2.categoria {
   </nav>
 </header>
 
-<div class="hero"></div>
-
-<main>
-
-<!-- INÍCIO -->
-<section id="inicio" class="ativo">
+<div class="hero">
   <div class="hero-content">
     <h1>Pesadelo na Terra do Nunca</h1>
     <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/_t67r9k3jjw">▶ Assistir</a>
   </div>
+</div>
 
+<main>
+
+<section id="inicio" class="ativo">
   <h2 class="categoria">Aventura</h2>
   <div class="carousel">
     <div class="filme">
       <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
       <h3>Nas Terras Perdidas</h3>
-      <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
       <a class="btn" href="https://youtu.be/wRvswkVUvec">▶ Assistir</a>
+    </div>
+  </div>
+
+  <h2 class="categoria">Comédia</h2>
+  <div class="carousel">
+    <div class="filme">
+      <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg">
+      <h3>Onde Está Meu Dinheiro?</h3>
+      <a class="btn" href="https://youtu.be/hNLmugXbWA4">▶ Assistir</a>
     </div>
   </div>
 </section>
 
-<!-- FILMES -->
 <section id="filmes">
-  <div class="vazio">Área de filmes pronta para novos conteúdos.</div>
+  <h2 class="categoria">Todos os Filmes</h2>
+  <div class="carousel">
+    <div class="filme">
+      <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
+      <h3>Nas Terras Perdidas</h3>
+      <a class="btn" href="https://youtu.be/wRvswkVUvec">▶ Assistir</a>
+    </div>
+
+    <div class="filme">
+      <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
+      <h3>Pesadelo na Terra do Nunca</h3>
+      <a class="btn" href="https://youtu.be/_t67r9k3jjw">▶ Assistir</a>
+    </div>
+
+    <div class="filme">
+      <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg">
+      <h3>Onde Está Meu Dinheiro?</h3>
+      <a class="btn" href="https://youtu.be/hNLmugXbWA4">▶ Assistir</a>
+    </div>
+  </div>
 </section>
 
-<!-- SÉRIES -->
 <section id="series">
   <div class="vazio">Nenhuma série adicionada ainda.</div>
 </section>
 
 </main>
 
-<button id="btnInstall">📥 Instalar HydraFilmes</button>
+<div id="btnInstall">📥 Instalar HydraFilmes</div>
 
 <script>
-// Splash
+/* SPLASH */
 setTimeout(() => {
   document.getElementById("introScreen").style.display = "none";
 }, 3000);
 
-// Header scroll
+/* HEADER SCROLL */
 window.addEventListener("scroll", () => {
   topo.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-// Abas
+/* ABAS */
 function trocar(id, el) {
   document.querySelectorAll("section").forEach(s => s.classList.remove("ativo"));
   document.getElementById(id).classList.add("ativo");
-
   document.querySelectorAll(".menu a").forEach(a => a.classList.remove("ativo"));
   el.classList.add("ativo");
 }
 
-// PWA
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+/* PWA INSTALL */
+let deferredPrompt;
+const btnInstall = document.getElementById("btnInstall");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btnInstall.style.display = "block";
+});
+
+btnInstall.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  btnInstall.style.display = "none";
+});
+
+/* SERVICE WORKER */
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
 }
 </script>
 
