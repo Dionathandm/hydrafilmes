@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ff0000">
+
   <style>
     body {
       margin: 0;
@@ -15,9 +16,12 @@
       overflow-x: hidden;
     }
 
-    /* HEADER COM LOGO */
+    /* HEADER COM LOGO (mantido) */
     header {
-      background: #111;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(17,17,17,0);
       padding: 10px;
       display: flex;
       align-items: center;
@@ -25,12 +29,24 @@
       gap: 10px;
       font-size: 20px;
       font-weight: bold;
+      z-index: 9999;
+      transition: background 0.3s ease;
+    }
+
+    /* ESCURECE AO ROLAR */
+    header.scrolled {
+      background: rgba(17,17,17,0.95);
     }
 
     header img {
       width: 28px;
       height: 28px;
       object-fit: contain;
+    }
+
+    /* ESPAÇO PARA O HEADER FIXO */
+    .spacer {
+      height: 52px;
     }
 
     h2.categoria {
@@ -127,6 +143,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <!-- INTRO -->
@@ -134,11 +151,13 @@
   <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
 </div>
 
-<!-- HEADER COM LOGO -->
-<header>
+<!-- HEADER (SEU) -->
+<header id="topo">
   <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes Logo">
   HydraFilmes
 </header>
+
+<div class="spacer"></div>
 
 <!-- AVENTURA -->
 <h2 class="categoria">Aventura</h2>
@@ -176,10 +195,22 @@
 <button id="btnInstall">📥 Instalar HydraFilmes</button>
 
 <script>
+/* INTRO */
 setTimeout(() => {
   document.getElementById('introScreen').style.display = 'none';
 }, 3000);
 
+/* SCROLL HEADER */
+window.addEventListener('scroll', () => {
+  const topo = document.getElementById('topo');
+  if (window.scrollY > 10) {
+    topo.classList.add('scrolled');
+  } else {
+    topo.classList.remove('scrolled');
+  }
+});
+
+/* SERVICE WORKER */
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
 }
