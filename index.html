@@ -9,18 +9,28 @@
   <style>
     body {
       margin: 0;
-      background: #000; /* fundo escuro completo */
+      background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       overflow-x: hidden;
     }
 
+    /* HEADER COM LOGO */
     header {
       background: #111;
-      padding: 12px;
-      text-align: center;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       font-size: 20px;
       font-weight: bold;
+    }
+
+    header img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
     }
 
     h2.categoria {
@@ -83,58 +93,25 @@
       cursor: pointer;
     }
 
-    @media (max-width: 400px) {
-      .filme {
-        flex: 0 0 95%;
-      }
-      .filme h3 {
-        font-size: 14px;
-      }
-      .filme p {
-        font-size: 11px;
-      }
-      .btn {
-        font-size: 13px;
-        padding: 7px;
-      }
-    }
-
-    /* MODAL PLAYER */
-    #playerModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.95);
-      z-index: 9999;
-      justify-content: center;
-      align-items: center;
-    }
-    #playerModal iframe {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* TELA DE INTRODUÇÃO */
+    /* INTRO */
     #introScreen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #000; /* fundo escuro total */
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 10000;
     }
+
     #introScreen img {
       max-width: 80%;
       max-height: 80%;
-      object-fit: contain;
     }
 
-    /* BOTÃO INSTALAR PWA */
     #btnInstall {
       position: fixed;
       bottom: 20px;
@@ -146,21 +123,24 @@
       border-radius: 8px;
       font-size: 16px;
       z-index: 10001;
-      cursor: pointer;
       display: none;
     }
   </style>
 </head>
 <body>
 
-<!-- TELA DE INTRODUÇÃO -->
+<!-- INTRO -->
 <div id="introScreen">
   <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
 </div>
 
-<header>🎬 HydraFilmes</header>
+<!-- HEADER COM LOGO -->
+<header>
+  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes Logo">
+  HydraFilmes
+</header>
 
-<!-- CATEGORIA AVENTURA -->
+<!-- AVENTURA -->
 <h2 class="categoria">Aventura</h2>
 <div class="carousel">
   <div class="filme">
@@ -171,7 +151,7 @@
   </div>
 </div>
 
-<!-- CATEGORIA TERROR -->
+<!-- TERROR -->
 <h2 class="categoria">Terror</h2>
 <div class="carousel">
   <div class="filme">
@@ -182,75 +162,27 @@
   </div>
 </div>
 
-<!-- CATEGORIA COMÉDIA -->
+<!-- COMÉDIA -->
 <h2 class="categoria">Comédia</h2>
 <div class="carousel">
   <div class="filme">
-    <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg" alt="Onde Está Meu Dinheiro?">
+    <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg">
     <h3>Onde Está Meu Dinheiro?</h3>
     <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
     <a class="btn" href="https://youtu.be/hNLmugXbWA4?si=sbgoySE9YZGeEP_j" target="_blank">▶ Assistir</a>
   </div>
 </div>
 
-<!-- MODAL PLAYER -->
-<div id="playerModal" onclick="fecharPlayer()">
-  <iframe id="videoPlayer" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-</div>
-
-<!-- BOTÃO INSTALAR PWA -->
 <button id="btnInstall">📥 Instalar HydraFilmes</button>
 
 <script>
-// FECHAR MODAL PLAYER
-function abrirPlayer(link) {
-  document.getElementById('videoPlayer').src = link + "?autoplay=1";
-  document.getElementById('playerModal').style.display = 'flex';
-}
-function fecharPlayer() {
-  document.getElementById('videoPlayer').src = "";
-  document.getElementById('playerModal').style.display = 'none';
-}
-
-// SERVICE WORKER
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-    .then(() => console.log('Service Worker registrado!'))
-    .catch(err => console.log('Service Worker falhou: ', err));
-}
-
-// FECHAR TELA DE INTRODUÇÃO APÓS 3 SEGUNDOS
 setTimeout(() => {
   document.getElementById('introScreen').style.display = 'none';
 }, 3000);
 
-// PROMPT INSTALAÇÃO PWA
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  const btn = document.getElementById('btnInstall');
-  btn.style.display = 'block';
-  btn.addEventListener('click', async () => {
-    btn.style.display = 'none';
-    deferredPrompt.prompt();
-    deferredPrompt = null;
-  });
-});
-
-// NOTIFICAÇÕES PUSH
-function askNotificationPermission() {
-  if (!('Notification' in window)) return;
-  Notification.requestPermission().then(permission => {
-    if (permission === 'granted') {
-      new Notification('HydraFilmes', {
-        body: 'Obrigado por permitir notificações! Você receberá avisos de novos filmes.',
-        icon: 'https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png'
-      });
-    }
-  });
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
 }
-window.addEventListener('load', askNotificationPermission);
 </script>
 
 </body>
