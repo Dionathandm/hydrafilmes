@@ -1,216 +1,280 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>HydraFilmes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ff0000">
+<meta charset="UTF-8">
+<title>HydraFilmes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff0000">
 
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
 
-    /* HEADER COM LOGO (mantido) */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(17,17,17,0);
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 20px;
-      font-weight: bold;
-      z-index: 9999;
-      transition: background 0.3s ease;
-    }
+/* SPLASH */
+#introScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
 
-    /* ESCURECE AO ROLAR */
-    header.scrolled {
-      background: rgba(17,17,17,0.95);
-    }
+#introScreen img {
+  max-width: 80%;
+}
 
-    header img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-    }
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: transparent;
+  z-index: 9999;
+  transition: background 0.3s ease;
+}
 
-    /* ESPAÇO PARA O HEADER FIXO */
-    .spacer {
-      height: 52px;
-    }
+header.scrolled {
+  background: rgba(0,0,0,0.95);
+}
 
-    h2.categoria {
-      margin: 15px 12px 8px 12px;
-      font-size: 18px;
-      border-left: 4px solid red;
-      padding-left: 8px;
-    }
+header img {
+  height: 26px;
+}
 
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      gap: 12px;
-      padding: 0 12px 18px 12px;
-      -webkit-overflow-scrolling: touch;
-    }
+.menu a {
+  color: #bdbdbd;
+  margin-right: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
 
-    .carousel::-webkit-scrollbar {
-      display: none;
-    }
+.menu a.ativo {
+  color: #fff;
+  border-bottom: 2px solid red;
+  padding-bottom: 4px;
+}
 
-    .filme {
-      background: #111;
-      flex: 0 0 90%;
-      border-radius: 6px;
-      padding: 6px;
-      display: flex;
-      flex-direction: column;
-      scroll-snap-align: start;
-    }
+/* HERO */
+.hero {
+  height: 85vh;
+  background: url("https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png") center/cover no-repeat;
+  position: relative;
+}
 
-    .filme img {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 6px;
-      object-fit: cover;
-    }
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, #000, transparent);
+}
 
-    .filme h3 {
-      margin: 6px 0 4px 0;
-      font-size: 16px;
-    }
+.hero-content {
+  position: absolute;
+  bottom: 60px;
+  left: 16px;
+}
 
-    .filme p {
-      font-size: 12px;
-      color: #ccc;
-      margin: 0 0 6px 0;
-    }
+.hero h1 {
+  font-size: 32px;
+  margin: 0;
+}
 
-    .btn {
-      margin-top: auto;
-      text-align: center;
-      padding: 8px;
-      font-size: 14px;
-      background: red;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+.hero p {
+  font-size: 14px;
+  color: #ccc;
+}
 
-    /* INTRO */
-    #introScreen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-    }
+.hero .btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: red;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+}
 
-    #introScreen img {
-      max-width: 80%;
-      max-height: 80%;
-    }
+/* SEÇÕES */
+main {
+  padding-top: 20px;
+}
 
-    #btnInstall {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: red;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      z-index: 10001;
-      display: none;
-    }
-  </style>
+section {
+  display: none;
+}
+
+section.ativo {
+  display: block;
+}
+
+/* CATEGORIAS */
+h2.categoria {
+  margin: 16px;
+  font-size: 18px;
+  border-left: 4px solid red;
+  padding-left: 8px;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 0 16px 24px;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.filme {
+  flex: 0 0 85%;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.filme img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
+.filme h3 {
+  margin: 8px;
+}
+
+.filme p {
+  margin: 0 8px 8px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.btn {
+  margin: 8px;
+  display: block;
+  text-align: center;
+  padding: 8px;
+  background: red;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+/* VAZIO */
+.vazio {
+  padding: 80px;
+  text-align: center;
+  color: #666;
+}
+
+/* BOTÃO INSTALL */
+#btnInstall {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 8px;
+  display: none;
+  z-index: 9999;
+}
+</style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+<!-- SPLASH -->
 <div id="introScreen">
-  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes">
+  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png">
 </div>
 
-<!-- HEADER (SEU) -->
 <header id="topo">
-  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png" alt="HydraFilmes Logo">
-  HydraFilmes
+  <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png">
+  <nav class="menu">
+    <a class="ativo" onclick="trocar('inicio', this)">Início</a>
+    <a onclick="trocar('series', this)">Séries</a>
+    <a onclick="trocar('filmes', this)">Filmes</a>
+  </nav>
 </header>
 
-<div class="spacer"></div>
+<div class="hero"></div>
 
-<!-- AVENTURA -->
-<h2 class="categoria">Aventura</h2>
-<div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-    <h3>Nas Terras Perdidas</h3>
-    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/wRvswkVUvec" target="_blank">▶ Assistir</a>
-  </div>
-</div>
+<main>
 
-<!-- TERROR -->
-<h2 class="categoria">Terror</h2>
-<div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-    <h3>Pesadelo na Terra do Nunca 2026</h3>
+<!-- INÍCIO -->
+<section id="inicio" class="ativo">
+  <div class="hero-content">
+    <h1>Pesadelo na Terra do Nunca</h1>
     <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/_t67r9k3jjw?si=fucLRhKguQR-HgZc" target="_blank">▶ Assistir</a>
+    <a class="btn" href="https://youtu.be/_t67r9k3jjw">▶ Assistir</a>
   </div>
-</div>
 
-<!-- COMÉDIA -->
-<h2 class="categoria">Comédia</h2>
-<div class="carousel">
-  <div class="filme">
-    <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg">
-    <h3>Onde Está Meu Dinheiro?</h3>
-    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
-    <a class="btn" href="https://youtu.be/hNLmugXbWA4?si=sbgoySE9YZGeEP_j" target="_blank">▶ Assistir</a>
+  <h2 class="categoria">Aventura</h2>
+  <div class="carousel">
+    <div class="filme">
+      <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
+      <h3>Nas Terras Perdidas</h3>
+      <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
+      <a class="btn" href="https://youtu.be/wRvswkVUvec">▶ Assistir</a>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- FILMES -->
+<section id="filmes">
+  <div class="vazio">Área de filmes pronta para novos conteúdos.</div>
+</section>
+
+<!-- SÉRIES -->
+<section id="series">
+  <div class="vazio">Nenhuma série adicionada ainda.</div>
+</section>
+
+</main>
 
 <button id="btnInstall">📥 Instalar HydraFilmes</button>
 
 <script>
-/* INTRO */
+// Splash
 setTimeout(() => {
-  document.getElementById('introScreen').style.display = 'none';
+  document.getElementById("introScreen").style.display = "none";
 }, 3000);
 
-/* SCROLL HEADER */
-window.addEventListener('scroll', () => {
-  const topo = document.getElementById('topo');
-  if (window.scrollY > 10) {
-    topo.classList.add('scrolled');
-  } else {
-    topo.classList.remove('scrolled');
-  }
+// Header scroll
+window.addEventListener("scroll", () => {
+  topo.classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* SERVICE WORKER */
+// Abas
+function trocar(id, el) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("ativo"));
+  document.getElementById(id).classList.add("ativo");
+
+  document.querySelectorAll(".menu a").forEach(a => a.classList.remove("ativo"));
+  el.classList.add("ativo");
+}
+
+// PWA
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js');
 }
