@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>HydraFilmes</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff0000">
 
@@ -27,7 +26,9 @@ body {
   align-items: center;
   z-index: 10000;
 }
-#introScreen img { max-width: 80%; }
+#introScreen img {
+  max-width: 80%;
+}
 
 /* HEADER */
 header {
@@ -41,13 +42,19 @@ header {
   padding: 0 16px;
   background: transparent;
   z-index: 9999;
-  transition: background 0.3s;
+  transition: background 0.3s ease;
 }
-header.scrolled { background: rgba(0,0,0,0.95); }
-header img { height: 26px; }
+header.scrolled {
+  background: rgba(0,0,0,0.95);
+}
+header img {
+  height: 26px;
+}
 
 /* MENU */
-.menu { justify-self: center; }
+.menu {
+  justify-self: center;
+}
 .menu a {
   color: #bdbdbd;
   margin: 0 12px;
@@ -80,92 +87,89 @@ header img { height: 26px; }
   position: absolute;
   bottom: 80px;
   left: 16px;
-  max-width: 90%;
 }
-.hero h1 { font-size: 32px; margin: 0; }
-.hero p { font-size: 14px; color: #ccc; }
 .hero .btn {
-  margin-top: 10px;
-  padding: 10px 20px;
   background: red;
-  color: #fff;
+  padding: 10px 20px;
   border-radius: 6px;
-  display: inline-block;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* SEÇÕES */
 section { display: none; }
 section.ativo { display: block; }
 
-/* FILMES */
+/* CATEGORIAS */
 h2.categoria {
   margin: 16px;
-  font-size: 18px;
   border-left: 4px solid red;
   padding-left: 8px;
 }
 .carousel {
   display: flex;
-  overflow-x: auto;
   gap: 12px;
+  overflow-x: auto;
   padding: 0 16px 24px;
 }
-.carousel::-webkit-scrollbar { display: none; }
 .filme {
   flex: 0 0 85%;
   background: #111;
   border-radius: 8px;
-  overflow: hidden;
 }
 .filme img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
 }
-.filme h3 { margin: 8px; }
 .btn {
+  display: block;
   margin: 8px;
-  padding: 8px;
+  text-align: center;
   background: red;
   color: #fff;
+  padding: 8px;
   border-radius: 4px;
-  text-align: center;
+  text-decoration: none;
 }
 
 /* PLAYER */
 #playerOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.95);
+  background: black;
   display: none;
-  align-items: center;
   justify-content: center;
-  z-index: 20000;
+  align-items: center;
+  z-index: 10001;
 }
-#playerOverlay span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 28px;
-  cursor: pointer;
+#playerBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
-#playerFrame {
+#playerBox iframe {
   width: 100%;
   height: 100%;
   border: none;
 }
-
-/* INSTALL */
-#btnInstall {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+#closePlayer {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   background: red;
-  padding: 12px 22px;
-  border-radius: 8px;
-  display: none;
-  z-index: 9999;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* LANDSCAPE */
+@media screen and (orientation: landscape) {
+  body { overflow: hidden; }
 }
 </style>
 </head>
@@ -180,16 +184,15 @@ h2.categoria {
 <header id="topo">
   <img src="https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png">
   <nav class="menu">
-    <a class="ativo" onclick="trocar('inicio', this)">Início</a>
-    <a onclick="trocar('series', this)">Séries</a>
-    <a onclick="trocar('filmes', this)">Filmes</a>
+    <a class="ativo" onclick="trocar('inicio',this)">Início</a>
+    <a onclick="trocar('series',this)">Séries</a>
+    <a onclick="trocar('filmes',this)">Filmes</a>
   </nav>
 </header>
 
 <div class="hero">
   <div class="hero-content">
     <h1>Pesadelo na Terra do Nunca</h1>
-    <p>Agradecendo a preferência por assistir no HydraFilmes.</p>
     <a class="btn" onclick="abrirVideo('_t67r9k3jjw')">▶ Assistir</a>
   </div>
 </div>
@@ -200,7 +203,6 @@ h2.categoria {
   <div class="carousel">
     <div class="filme">
       <img src="https://i.ibb.co/1tb4fv8C/file-00000000005c71f589e9af58f1e9c5c1.png">
-      <h3>Nas Terras Perdidas</h3>
       <a class="btn" onclick="abrirVideo('wRvswkVUvec')">▶ Assistir</a>
     </div>
   </div>
@@ -209,7 +211,6 @@ h2.categoria {
   <div class="carousel">
     <div class="filme">
       <img src="https://i.ibb.co/hFt6Xrsn/file-00000000dd00720eb73a5cbdb67f797c-3.jpg">
-      <h3>Onde Está Meu Dinheiro?</h3>
       <a class="btn" onclick="abrirVideo('hNLmugXbWA4')">▶ Assistir</a>
     </div>
   </div>
@@ -220,7 +221,6 @@ h2.categoria {
   <div class="carousel">
     <div class="filme">
       <img src="https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png">
-      <h3>Pesadelo na Terra do Nunca</h3>
       <a class="btn" onclick="abrirVideo('_t67r9k3jjw')">▶ Assistir</a>
     </div>
   </div>
@@ -235,37 +235,37 @@ h2.categoria {
 
 <!-- PLAYER -->
 <div id="playerOverlay">
-  <span onclick="fecharVideo()">✖</span>
-  <iframe id="playerFrame" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <div id="playerBox">
+    <button id="closePlayer" onclick="fecharVideo()">✕</button>
+    <iframe id="playerFrame" allow="autoplay; fullscreen"></iframe>
+  </div>
 </div>
 
-<div id="btnInstall">📥 Instalar HydraFilmes</div>
-
 <script>
-setTimeout(() => introScreen.style.display = "none", 3000);
+setTimeout(()=>introScreen.style.display="none",3000);
 
-window.addEventListener("scroll", () =>
-  topo.classList.toggle("scrolled", window.scrollY > 50)
-);
+window.addEventListener("scroll",()=>topo.classList.toggle("scrolled",scrollY>50));
 
-function trocar(id, el) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("ativo"));
+function trocar(id,el){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("ativo"));
   document.getElementById(id).classList.add("ativo");
-  document.querySelectorAll(".menu a").forEach(a => a.classList.remove("ativo"));
+  document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("ativo"));
   el.classList.add("ativo");
 }
 
-function abrirVideo(id) {
-  playerFrame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
-  playerOverlay.style.display = "flex";
+function abrirVideo(id){
+  playerFrame.src = "https://www.youtube.com/embed/"+id+"?autoplay=1&playsinline=1";
+  playerOverlay.style.display="flex";
+  if(screen.orientation?.lock) screen.orientation.lock("landscape").catch(()=>{});
 }
 
-function fecharVideo() {
-  playerFrame.src = "";
-  playerOverlay.style.display = "none";
+function fecharVideo(){
+  playerFrame.src="";
+  playerOverlay.style.display="none";
+  if(screen.orientation?.unlock) screen.orientation.unlock();
 }
 
-if ("serviceWorker" in navigator) {
+if("serviceWorker" in navigator){
   navigator.serviceWorker.register("sw.js");
 }
 </script>
