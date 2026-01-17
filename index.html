@@ -8,170 +8,171 @@
 <meta name="theme-color" content="#ff0000">
 
 <style>
-body{
-  margin:0;
-  background:#000;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  overflow-x:hidden;
+html, body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
 }
 
 /* SPLASH */
-#introScreen{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:10000;
+#introScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }
-#introScreen img{max-width:80%;}
+#introScreen img { max-width: 80%; }
 
 /* HEADER */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:56px;
-  display:grid;
-  grid-template-columns:auto 1fr;
-  align-items:center;
-  padding:0 16px;
-  background:transparent;
-  z-index:9999;
-  transition:background .3s;
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 0 16px;
+  background: transparent;
+  z-index: 9999;
+  transition: background .3s;
 }
-header.scrolled{background:rgba(0,0,0,.95);}
-header img{height:26px}
+header.scrolled { background: rgba(0,0,0,.95); }
+header img { height: 26px }
 
 /* MENU */
-.menu{justify-self:center;}
-.menu a{
-  color:#bdbdbd;
-  margin:0 12px;
-  font-size:14px;
-  text-decoration:none;
-  cursor:pointer;
+.menu { justify-self: center; }
+.menu a {
+  color: #bdbdbd;
+  margin: 0 12px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
 }
-.menu a.ativo{
-  color:#fff;
-  border-bottom:2px solid red;
-  padding-bottom:4px;
+.menu a.ativo {
+  color: #fff;
+  border-bottom: 2px solid red;
+  padding-bottom: 4px;
 }
 
 /* HERO */
-.hero{
-  height:85vh;
-  background:url("https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png") center/cover no-repeat;
-  position:relative;
+.hero {
+  height: 85vh;
+  background: url("https://i.ibb.co/KjcLf07v/file-0000000092f8720eb6db654b819a8a71.png") center/cover no-repeat;
+  position: relative;
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:55%;
-  background:linear-gradient(to top,#000,transparent);
-  pointer-events:none;
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(to top, #000, transparent);
+  pointer-events: none;
 }
-.hero-content{
-  position:absolute;
-  bottom:80px;
-  left:16px;
+.hero-content {
+  position: absolute;
+  bottom: 80px;
+  left: 16px;
 }
-.hero .btn{
-  background:red;
-  padding:10px 20px;
-  border-radius:6px;
-  color:#fff;
-  text-decoration:none;
+.hero .btn {
+  background: red;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* SEÇÕES */
-main{padding-top:20px}
-section{display:none}
-section.ativo{display:block}
+main { padding-top: 20px }
+section { display: none }
+section.ativo { display: block }
 
 /* FILMES */
-h2.categoria{
-  margin:16px;
-  border-left:4px solid red;
-  padding-left:8px;
+h2.categoria {
+  margin: 16px;
+  border-left: 4px solid red;
+  padding-left: 8px;
 }
-.carousel{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding:0 16px 24px;
+.carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 16px 24px;
 }
-.carousel::-webkit-scrollbar{display:none}
-.filme{
-  flex:0 0 85%;
-  background:#111;
-  border-radius:8px;
-  overflow:hidden;
+.carousel::-webkit-scrollbar { display: none }
+.filme {
+  flex: 0 0 85%;
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.filme img{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
+.filme img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
-.btn{
-  display:block;
-  margin:8px;
-  text-align:center;
-  background:red;
-  color:#fff;
-  padding:8px;
-  border-radius:4px;
-  text-decoration:none;
+.btn {
+  display: block;
+  margin: 8px;
+  text-align: center;
+  background: red;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 /* PLAYER */
-#playerOverlay{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:10001;
+#playerOverlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
 }
-#playerBox{
-  width:100%;
-  height:100%;
-  position:relative;
+#playerBox {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
-#playerBox iframe{
-  width:100%;
-  height:100%;
-  border:none;
+#playerBox iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
-#closePlayer{
-  position:absolute;
-  top:15px;
-  right:15px;
-  background:red;
-  color:#fff;
-  border:none;
-  padding:8px 12px;
-  border-radius:50%;
-  font-size:18px;
-  z-index:10;
+#closePlayer {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: red;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 18px;
+  z-index: 10;
 }
 
 /* INSTALL */
-#btnInstall{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:red;
-  padding:12px 22px;
-  border-radius:8px;
-  display:none;
-  z-index:9999;
+#btnInstall {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+  padding: 12px 22px;
+  border-radius: 8px;
+  display: none;
+  z-index: 9999;
 }
 </style>
 </head>
@@ -270,37 +271,31 @@ function trocar(id,el){
 }
 
 function abrirVideo(id){
-  playerFrame.src="https://www.youtube.com/embed/"+id+"?autoplay=1&playsinline=1";
-  playerOverlay.style.display="flex";
-  if(screen.orientation?.lock){
-    screen.orientation.lock("landscape").catch(()=>{});
-  }
+  playerFrame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&playsinline=1";
+  playerOverlay.style.display = "flex";
 }
 
 function fecharVideo(){
-  playerFrame.src="";
-  playerOverlay.style.display="none";
-  if(screen.orientation?.unlock){
-    screen.orientation.unlock();
-  }
+  playerFrame.src = "";
+  playerOverlay.style.display = "none";
 }
 
 /* INSTALL */
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt",e=>{
+window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
-  deferredPrompt=e;
-  btnInstall.style.display="block";
+  deferredPrompt = e;
+  btnInstall.style.display = "block";
 });
-btnInstall.onclick=async()=>{
+btnInstall.onclick = async () => {
   if(!deferredPrompt) return;
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
-  deferredPrompt=null;
-  btnInstall.style.display="none";
+  deferredPrompt = null;
+  btnInstall.style.display = "none";
 };
 
-/* SW */
+/* SERVICE WORKER */
 if("serviceWorker" in navigator){
   navigator.serviceWorker.register("sw.js");
 }
