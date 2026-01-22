@@ -275,7 +275,9 @@ function trocar(id,el){
 }
 
 function abrirVideo(id){
-  playerFrame.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&playsinline=1";
+  playerFrame.src =
+    "https://www.youtube.com/embed/" + id +
+    "?autoplay=1&playsinline=0&rel=0&modestbranding=1";
   playerOverlay.style.display = "flex";
 }
 
