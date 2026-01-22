@@ -1,12 +1,12 @@
 {
   "name": "HydraFilmes",
   "short_name": "HydraFilmes",
-  "description": "Assista aos melhores filmes no HydraFilmes!",
-  "start_url": "index.html",
+  "description": "Plataforma de entretenimento em fase de testes.",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff0000",
-  "orientation": "any"
+  "orientation": "any",
   "icons": [
     {
       "src": "https://i.ibb.co/r22ZV0kv/lv-0-20260116051448.png",
