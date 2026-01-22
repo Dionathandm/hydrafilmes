@@ -250,7 +250,11 @@ h2.categoria {
 <div id="playerOverlay">
   <div id="playerBox">
     <button id="closePlayer" onclick="fecharVideo()">✕</button>
-    <iframe id="playerFrame" allow="autoplay; fullscreen"></iframe>
+    <iframe
+  id="playerFrame"
+  allow="autoplay; fullscreen; gyroscope; accelerometer; picture-in-picture"
+  allowfullscreen>
+    </iframe>
   </div>
 </div>
 
